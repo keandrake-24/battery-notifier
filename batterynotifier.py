@@ -1,6 +1,5 @@
 import subprocess as sp
 from time import sleep
-from plyer import notification
 notyetcharging = False #this tracks if the user hasnt begun charging, without this variable it will keep on sending notifications instead of once
 while True:
      
