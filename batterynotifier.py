@@ -20,7 +20,7 @@ while True:
     elif info[0] == "Discharging," and info[1] < 10 and notyetcharging == True:
         sp.run(["sudo","brightnessctl","s","5%"])
         sp.Popen(["paplay","lowbat.mp3"])
-        sp.Popen(["notify-send","-a","python-battery","Battery low","Your battery is very low, please plug in now!"])
+        sp.Popen(["notify-send","-a","python-battery","Battery low","Your battery is very low, please plug in now!",'-u','critical'])
 
     elif info[0] == "Charging," and notyetcharging == True:
         notyetcharging = False
