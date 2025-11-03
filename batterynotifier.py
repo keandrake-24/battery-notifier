@@ -13,16 +13,18 @@ while True:
     if info[0] == 'Discharging,' and info[1] < 25 and notyetcharging != True:
         notyetcharging = True
         sp.run(["sudo","brightnessctl","s","5%"])
-        sp.Popen(["paplay","lowbat.mp3"])
+        sp.Popen(["paplay",f"{__file__[:__file__.rfind('/')+1]}lowbat.mp3"]) #the complex f string basically gets the directory that the python file is in
         sp.Popen(["notify-send","-a","python-battery","Battery low","Your battery is very low, please plug in now!"])
         
-    elif info[0] == "Discharging," and info[1] < 10 and notyetcharging == True:
+    elif info[0] == "Discharging," and info[1] < 20 and notyetcharging == True:
         sp.run(["sudo","brightnessctl","s","5%"])
-        sp.Popen(["paplay","lowbat.mp3"])
+        sp.Popen(["paplay",f"{__file__[:__file__.rfind('/')+1]}lowbat.mp3"])
         sp.Popen(["notify-send","-a","python-battery","Battery low","Your battery is very low, please plug in now!",'-u','critical'])
+        continue
 
     elif info[0] == "Charging," and notyetcharging == True:
         notyetcharging = False
+        sp.Popen(["paplay",f"{__file__[:__file__.rfind('/')+1]}charging.mp3"])
         sp.run(["sudo","brightnessctl","s","20%"])
-    sleep(0.1)
+    sleep(2)
 
