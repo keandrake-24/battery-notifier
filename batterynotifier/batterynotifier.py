@@ -27,4 +27,5 @@ def main():
             sp.Popen(["paplay",f"{__file__[:__file__.rfind('/')+1]}charging.mp3"])
             sp.run(["sudo","brightnessctl","s","20%"])
         sleep(2)
-
+if __name__ == '__main__':
+    main()
